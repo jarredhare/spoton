@@ -1,6 +1,7 @@
 body {
   background: rgb(38, 45, 56);
   padding-top: 25px;
+  color: white;
 }
 
 input[type="text"] {
@@ -13,6 +14,22 @@ input[type="text"] {
 .btn {
   border-radius: 25px;
   font-size: 1.25em;
+}
+
+.day, .times, .day-number {
+  color: rgb(133, 86, 205);
+}
+
+.day-number, .day {
+  text-align: center;
+}
+
+.times {
+  font-size: 0.85em;
+}
+
+.event-cell {
+  border-bottom: 2px solid rgb(133, 86, 205);
 }
 
 /*.button-icon {

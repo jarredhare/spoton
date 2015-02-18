@@ -14,7 +14,7 @@
   <div class="container" ng-controller="formController">
 
 
-      <form novalidate ngSubmit="console.log('hey')">
+      <form novalidate>
         <div class="row">
           <input class="textbox twelve columns" type="text" ng-model="event.subject" placeholder="{{master.subject}}">
         </div>
@@ -29,12 +29,20 @@
         <div class="row">
           <input class="textbox twelve columns" type="text" ng-model="event.location" placeholder="{{master.location}}">
         </div>
-        <button class="button-primary btn four columns offset-by-four" ng-click="addEvent()">Add to Cal</button>
-      </form>
-
-      <div class="calendar-grid">
         <div class="row">
+          <button class="button-primary btn four columns offset-by-four" ng-click="addEvent(event)">Add to Cal</button>
+        </div>
+      </form>
+      <div class="calendar-grid" ng-repeat="ev in events track by $index">
 
+        <div class="row six columns offset-by-three">
+          <div class="two columns day">Wed</div>
+          <div class="ten columns times">{{ev.startTime + ' - ' + ev.endTime}}</div>
+        </div>
+
+        <div class="row event-cell six columns offset-by-three">
+          <div class="two columns day-number">1</div>
+          <div class="ten columns">{{ev.subject}}</div>
         </div>
 
       </div>
