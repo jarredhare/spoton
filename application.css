@@ -1,0 +1,20 @@
+body {
+  background: rgb(38, 45, 56);
+  padding-top: 25px;
+}
+
+input[type="text"] {
+   border: none;
+   background: rgb(38, 45, 56);
+   border-bottom: 3px solid rgb(139, 165, 183);
+   border-radius: 0px;
+}
+
+.btn {
+  border-radius: 25px;
+  font-size: 1.25em;
+}
+
+/*.button-icon {
+  height: 30px;
+}*/

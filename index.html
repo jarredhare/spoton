@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="normalize.css">
+<link rel="stylesheet" type="text/css" href="skeleton.css">
+<link rel="stylesheet" type="text/css" href="application.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="application.js"></script>
+</head>
+
+<body ng-app="">
+  <div class="container" ng-controller="formController">
+
+
+      <form novalidate ngSubmit="console.log('hey')">
+        <div class="row">
+          <input class="textbox twelve columns" type="text" ng-model="event.subject" placeholder="{{master.subject}}">
+        </div>
+        <div class="row">
+          <input class="textbox six columns" type="text" ng-model="event.start" placeholder="{{master.start}}">
+          <input class="textbox six columns" type="text" ng-model="event.end" placeholder="{{master.end}}">
+        </div>
+        <div class="row">
+          <input class="textbox six columns" type="text" ng-model="event.startTime" placeholder="{{master.startTime}}">
+          <input class="textbox six columns" type="text" ng-model="event.endTime" placeholder="{{master.endTime}}">
+        </div>
+        <div class="row">
+          <input class="textbox twelve columns" type="text" ng-model="event.location" placeholder="{{master.location}}">
+        </div>
+        <button class="button-primary btn four columns offset-by-four" ng-click="addEvent()">Add to Cal</button>
+      </form>
+
+      <div class="calendar-grid">
+        <div class="row">
+
+        </div>
+
+      </div>
+  </div>
+
+
+</body>
+</html>
