@@ -1,51 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='cal'>
 
 <head>
-<link rel="stylesheet" type="text/css" href="normalize.css">
-<link rel="stylesheet" type="text/css" href="skeleton.css">
-<link rel="stylesheet" type="text/css" href="application.css">
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="skeleton.css">
+  <link rel="stylesheet" type="text/css" href="ng-quick-date.css">
+  <link rel="stylesheet" type="text/css" href="ng-quick-date-default-theme.css">
 
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src="application.js"></script>
+  <link rel="stylesheet" type="text/css" href="application.css">
+
+
+  <script src="angular.min.js"></script>
+  <script src="ng-quick-date.min.js"></script>
+
+  <script src="application.js"></script>
 </head>
 
-<body ng-app="">
-  <div class="container" ng-controller="formController">
+<body>
+
+  <div class="container" ng-controller="formCtrl">
 
 
-      <form novalidate>
+      <form novalidate name="calForm" ng-submit="calForm.$valid && addEvent(event)">
         <div class="row">
-          <input class="textbox twelve columns" type="text" ng-model="event.subject" placeholder="{{master.subject}}">
+          <input class="textbox twelve columns" type="text" ng-model="event.subject" placeholder="{{master.subject}}" required>
         </div>
         <div class="row">
-          <input class="textbox six columns" type="text" ng-model="event.start" placeholder="{{master.start}}">
-          <input class="textbox six columns" type="text" ng-model="event.end" placeholder="{{master.end}}">
+          <div class="six columns">
+            <quick-datepicker ng-model='event.start' date-format='EEEE, MMMM d, yyyy' placeholder='{{master.start}}' disable-clear-button='true' disable-timepicker='true'></quick-datepicker>
+          </div>
+          <div class="six columns">
+            <quick-datepicker ng-model='event.end' date-format='EEEE, MMMM d, yyyy' placeholder='{{master.end}}' disable-clear-button='true' disable-timepicker='true'></quick-datepicker>
+          </div>
         </div>
         <div class="row">
-          <input class="textbox six columns" type="text" ng-model="event.startTime" placeholder="{{master.startTime}}">
-          <input class="textbox six columns" type="text" ng-model="event.endTime" placeholder="{{master.endTime}}">
+          <select class="textbox six columns" type="text" ng-model="event.startTime" placeholder="{{master.startTime}}" ng-options="time for time in times" required>
+            <option value=''>--:-- --</option>
+          </select>
+          <select class="textbox six columns" type="text" ng-model="event.endTime" placeholder="{{master.endTime}}" ng-options="time for time in times" required>
+            <option value=''>--:-- --</option>
+          </select>
         </div>
         <div class="row">
-          <input class="textbox twelve columns" type="text" ng-model="event.location" placeholder="{{master.location}}">
+          <input class="textbox twelve columns" type="text" ng-model="event.location" placeholder="{{master.location}}" required>
         </div>
         <div class="row">
-          <button class="button-primary btn four columns offset-by-four" ng-click="addEvent(event)">Add to Cal</button>
+          <button type='submit' class="button-primary btn four columns offset-by-four">Add to Cal</button>
         </div>
       </form>
-      <div class="calendar-grid" ng-repeat="ev in events track by $index">
+      <div class="row" ng-show="viewButton">
+        <button class="button-primary btn four columns offset-by-four" ng-click="toggleView()">{{viewType}} View</button>
+      </div>
 
+      <div ng-repeat="ev in events track by $index" ng-hide="viewType === 'List'">
+        <!-- {{ev.start | date:'EEE'}} -->
         <div class="row six columns offset-by-three">
-          <div class="two columns day">Wed</div>
+          <div class="two columns day">{{ev.start | date:'EEE'}}</div>
           <div class="ten columns times">{{ev.startTime + ' - ' + ev.endTime}}</div>
         </div>
 
         <div class="row event-cell six columns offset-by-three">
-          <div class="two columns day-number">1</div>
+          <div class="two columns day-number">{{ev.start | date:'d'}}</div>
           <div class="ten columns">{{ev.subject}}</div>
+        </div>
+      </div>
+
+      <div class="calendar-grid"  ng-hide="viewType === 'Grid'">
+        <!-- {{ev.start | date:'EEE'}} -->
+        <div class="grid-cell" ng-repeat="ev in events track by $index">
+          <div class="day">Date: {{ev.start | date:'shortDate'}} - {{ev.end | date:'shortDate'}} </div>
+          <div class="day">Time: {{ev.startTime}} - {{ev.endTime}}</div>
+          <div>{{ev.subject}}</div>
+          <div>Place: {{ev.location}}</div>
         </div>
 
       </div>
+
+
   </div>
 
 

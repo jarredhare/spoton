@@ -1,16 +1,27 @@
 body {
   background: rgb(38, 45, 56);
   padding-top: 25px;
-  color: white;
+  color: rgb(130, 155, 172);
+}
+form {
+  margin-bottom: 0px;
 }
 
-input[type="text"] {
+input[type="text"], select[type="text"] {
    border: none;
    background: rgb(38, 45, 56);
    border-bottom: 3px solid rgb(139, 165, 183);
    border-radius: 0px;
+   padding: 6px 0px;
 }
 
+select {
+  border-radius: 0px;
+  -webkit-appearance: none;
+}
+::-webkit-input-placeholder {
+   color: rgb(130, 155, 172);
+}
 .btn {
   border-radius: 25px;
   font-size: 1.25em;
@@ -20,18 +31,61 @@ input[type="text"] {
   color: rgb(133, 86, 205);
 }
 
-.day-number, .day {
-  text-align: center;
-}
-
 .times {
   font-size: 0.85em;
 }
 
 .event-cell {
   border-bottom: 2px solid rgb(133, 86, 205);
+  color: white;
 }
 
-/*.button-icon {
-  height: 30px;
-}*/
+.quickdate-button {
+  border: none;
+  border-bottom: 3px solid rgb(139, 165, 183);
+  border-radius: 0px;
+  background: none;
+  color: rgb(130, 155, 172);
+  width: 100%;
+  padding: 6px 0px 6px 0px;
+}
+
+a:hover {
+  color: #A6A6A6;
+  text-decoration: bold;
+}
+input.quickdate-date-input, input.quickdate-time-input {
+  width: 100%;
+}
+
+.quickdate {
+  width:100%;
+}
+.quickdate-input-wrapper {
+  width: 100%;
+}
+
+.grid-cell{
+  border: 2px solid rgb(133, 86, 205) ;
+  text-align: center;
+  color: white;
+  margin-left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  float: left;
+}
+
+@media (min-width: 600px) {
+  .grid-cell{
+    border: 2px solid rgb(133, 86, 205) ;
+    text-align: center;
+    color: white;
+    margin-left: 0;
+    width: 33.3333333333%;
+    box-sizing: border-box;
+    float: left;
+  }
+  .day-number, .day {
+    text-align: center;
+  }
+}
