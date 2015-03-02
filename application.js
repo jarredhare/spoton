@@ -1,3 +1,4 @@
+(function(){
 var app = angular.module('cal', ['ngQuickDate']);
 
 app.controller('formCtrl', ['$scope', function($scope){
@@ -39,3 +40,4 @@ var makeTimes = function(){
     }
     return times;
 }
+})();
